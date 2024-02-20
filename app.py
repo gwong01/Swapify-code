@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+
 db = SQLAlchemy(app)
 
 class createAccount(db.Model):
@@ -19,7 +20,23 @@ class createAccount(db.Model):
 @app.route('/', methods=['POST', 'GET'])
 def index():
     if request.method == 'POST':
-        return 'HELLO'
+        first = request.form['first-text']
+        new_first = createAccount(firstName=first)
+        last = request.form['last']
+        new_last = createAccount(lastName=last)
+        user = request.form['user-text']
+        new_user = createAccount(username=user)
+        email = request.form['email-text']
+        new_email = createAccount(email=email)
+        passw = request.form['pass-text']
+        new_pass = createAccount(password=passw)
+        try:
+            db.session.add(new_first, new_last, new_user, new_email, new_pass)
+            db.session.commit()
+            return 'You signed up!'
+        except:
+            return 'There was an issue adding one of your inputs.'
+
     else:
         return render_template('create-account.html')
 
