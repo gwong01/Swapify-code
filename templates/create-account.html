@@ -2,12 +2,12 @@
 <html lang="en">
   <head>
       <meta charset="utf-8">
-      <link rel="stylesheet" href="create-account.css">
+      <link rel="stylesheet" href="{{url_for('static', filename='css/create-account.css')}}">
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
       >
-      <script src="index.js"></script>
+      <!--<script src="index.js"></script>-->
       <title>Register now!</title>
   </head>
   <body>
@@ -19,9 +19,9 @@
                   <p id="first">First Name</p>
                   <input type="text" id="first-text" name="" placeholder="Enter first name...">
                   <p id="last">Last Name</p>
-                  <input type="text" id="last-text" name="" placeholder="Enter last name...">
+                  <input type="text" class="last-text" name="" placeholder="Enter last name...">
                   <p id="username">Username</p>
-                  <input type="text" id="last-text" name="" placeholder="Please choose a username...">
+                  <input type="text" class="last-text" name="" placeholder="Please choose a username...">
                   <p id="email">Email Address</p>
                   <input type="text" id="email-text" name="" placeholder="Enter your email address...">
                   <p id="pass">Password</p>
