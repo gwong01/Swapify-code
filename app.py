@@ -26,12 +26,12 @@ def index():
         new_last = createAccount(lastName=last)
         user = request.form['user-text']
         new_user = createAccount(username=user)
-        email = request.form['email-text']
-        new_email = createAccount(email=email)
+        em = request.form['email-text']
+        new_email = createAccount(email=em)
         passw = request.form['pass-text']
         new_pass = createAccount(password=passw)
         try:
-            db.session.add(new_first, new_last, new_user, new_email, new_pass)
+            db.session.add(createAccount(firstName=first, lastName=last, username=user, email=em, password=passw))
             db.session.commit()
             return 'You signed up!'
         except:
