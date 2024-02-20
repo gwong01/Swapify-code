@@ -1,0 +1,56 @@
+
+body {
+  background-color: #FFFFFF;
+  font-family: "Roboto", sans-serif;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+
+header {
+  font-size: 40px;
+  text-align: center;
+}
+
+#create, #create-form {
+  text-align: center;
+}
+
+#create-form {
+  background: linear-gradient(123.5deg, rgb(244, 219, 251) 29.3%, rgb(255, 214, 214) 67.1%);
+  border-radius: 20px;
+  height: 80vh;
+}
+
+.button-container button {
+  background-color: lightgray;
+  color: #fff;
+  font-size: 20px;
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.button-container button:hover {
+  background-color: #FEC5E5;
+}
+
+
+.create-page input {
+  width: 50%;
+  height: 40px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: gray;
+  border-radius: 4px;
+}
+
+.create-page p {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
