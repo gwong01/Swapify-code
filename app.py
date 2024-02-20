@@ -21,21 +21,24 @@ class createAccount(db.Model):
 def index():
     if request.method == 'POST':
         first = request.form['first-text']
-        new_first = createAccount(firstName=first)
         last = request.form['last']
-        new_last = createAccount(lastName=last)
         user = request.form['user-text']
-        new_user = createAccount(username=user)
         em = request.form['email-text']
-        new_email = createAccount(email=em)
         passw = request.form['pass-text']
-        new_pass = createAccount(password=passw)
-        try:
-            db.session.add(createAccount(firstName=first, lastName=last, username=user, email=em, password=passw))
-            db.session.commit()
-            return 'You signed up!'
-        except:
-            return 'There was an issue adding one of your inputs.'
+
+        userExists = db.session.query(createAccount.id).filter_by(username=user).first() is not None
+        emailExists = db.session.query(createAccount.id).filter_by(email=em).first() is not None
+        if userExists:
+            return "Username already exists."
+        elif emailExists:
+            return "Email already exists."
+        else:
+            try:
+                db.session.add(createAccount(firstName=first, lastName=last, username=user, email=em, password=passw))
+                db.session.commit()
+                return 'You signed up!'
+            except:
+                return 'There was an issue adding one of your inputs.'
 
     else:
         return render_template('create-account.html')
