@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin
 
@@ -26,7 +26,11 @@ class createAccount(UserMixin, db.Model):
 
     def __repr__(self):
         return'<Task %r>' % self.id
+
 @app.route('/')
+def index():
+    return render_template('index.html')
+
 @app.route('/create', methods=['POST', 'GET'])
 def create():
     if request.method == 'POST':
@@ -39,16 +43,20 @@ def create():
         userExists = db.session.query(createAccount.id).filter_by(username=user).first() is not None
         emailExists = db.session.query(createAccount.id).filter_by(email=em).first() is not None
         if userExists:
-            return "Username already exists."
+            flash("Username already exists.", 'error')
+            return redirect(url_for('create'))
         elif emailExists:
-            return "Email already exists."
+            flash("Email already exists.", 'error')
+            return redirect(url_for('create'))
         else:
             try:
                 db.session.add(createAccount(firstName=first, lastName=last, username=user, email=em, password=passw))
                 db.session.commit()
-                return 'You signed up!'
+                flash('You signed up!', 'info')
+                return redirect(url_for('index'))
             except:
-                return 'There was an issue adding one of your inputs.'
+                flash('There was an issue adding one of your inputs.', 'error')
+                return redirect(url_for('create'))
 
     else:
         return render_template('create-account.html')
@@ -64,11 +72,14 @@ def login():
             combo = db.session.query(createAccount).filter_by(email=logemail, password=logpassw).first()
 
             if combo:
-                return 'You are logged in!'
+                flash('You are logged in!', 'info')
+                return redirect(url_for('index'))
             else:
-                return 'Wrong username and password combination. Please try again'
+                flash('Wrong username and password combination. Please try again', 'error')
+                return redirect(url_for('login'))
         except:
-            return 'Something went wrong on the server. Please try again'
+            flash('Something went wrong on the server. Please try again', 'error')
+            return redirect(url_for('login'))
 
     else:
         return render_template('login.html')

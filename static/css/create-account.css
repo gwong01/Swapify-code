@@ -17,6 +17,7 @@ header {
 }
 
 #create-form {
+  flex-wrap: wrap;
   background: linear-gradient(123.5deg, rgb(244, 219, 251) 29.3%, rgb(255, 214, 214) 67.1%);
   border-radius: 20px;
   height: 80vh;

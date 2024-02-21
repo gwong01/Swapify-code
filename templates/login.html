@@ -22,14 +22,16 @@
                     <section class="button-container">
                         <button type="submit">Log in</button>
                     </section>
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for msg in messages %}
+                                <h4>{{msg}}</h4>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
                     <p><em>Not registered?</em><em> <a href="{{url_for('create')}}">Create an account!</em></a></p>
                 </section>
             </form>
         </main>
-        {% if current_user.is_authenticated %}
-        <h1>You are logged in</h1>
-        {% else %}
-        <h1>You are not logged in</h1>
-        {% endif %}
     </body>
 </html>
