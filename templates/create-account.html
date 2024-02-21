@@ -14,7 +14,7 @@
       <main>
           <header>SonnySwap</header>
           <h1 id="create"><em>Create your SonnySwap account</em></h1>
-          <form action='/' method='POST' id="create-form">
+          <form action="{{ url_for('create') }}" method='POST' id="create-form">
              <section class="create-page">
                   <p id="first">First Name</p>
                   <input type="text" id="first-text" name="first-text" placeholder="Enter first name...">
@@ -30,7 +30,7 @@
                       <button type="submit">Create account!</button>
                 </section>
                  </section>
-                  <p><em>Already have an account?</em><em> <a href="login.html">Log in!</em></a></p>
+                  <p><em>Already have an account?</em><em> <a href="{{url_for('login')}}">Log in!</em></a></p>
               </section>
           </form>
       </main>

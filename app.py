@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
+import sys
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
@@ -16,9 +17,9 @@ class createAccount(db.Model):
 
     def __repr__(self):
         return'<Task %r>' % self.id
-
-@app.route('/', methods=['POST', 'GET'])
-def index():
+@app.route('/')
+@app.route('/create', methods=['POST', 'GET'])
+def create():
     if request.method == 'POST':
         first = request.form['first-text']
         last = request.form['last']
@@ -43,5 +44,28 @@ def index():
     else:
         return render_template('create-account.html')
 
+
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    if request.method == 'POST':
+        try:
+            logemail = request.form['email-text']
+            logpassw = request.form['pass-text']
+
+            #userExists = db.session.query(createAccount.id).filter_by(username=user).first() is not None
+            combo = db.session.query(createAccount).filter_by(email=logemail, password=logpassw)
+            #query = db.session.query(createAccount).filter(createAccount.email==logemail, createAccount.password==logpassw) is not None
+
+            #password = db.session.query(createAccount.id).filter_by().first() is not None
+
+            if combo:
+                return 'You are logged in!'
+            else:
+                return 'Wrong username password combo'
+        except:
+            return 'something went wrong on the server. please try again'
+
+    else:
+        return render_template('login.html')
 if __name__ == "__main__":
     app.run(debug=True)
