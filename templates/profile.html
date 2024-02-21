@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="navbar">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="profile.html">Profile</a></li>
+    </ul>
+</nav>
+<section>
+    <h1> In Search O </h1>
+</section>
+
+<section>
+    <h1>Sonny Items</h1>
+    <div class="sonny-items">
+        {% for item in items %}
+            <div class="sonny-item">
+                <img src="{{ item.images }}" alt="{{ item.name }}">
+                <h2>{{ item.name }}</h2>
+            </div>
+        {% else %}
+            <p>No items found.</p>
+        {% endfor %}
+
+    <h1> Inventory </h1>
+ <form action="/add_inventory" method="post">
+    <input type="text" name="name" placeholder="Name" required>
+    <input type="text" name="series" placeholder="Series">
+    <input type="text" name="category" placeholder="Category">
+    <input type="number" step="0.01" name="mrk_value" placeholder="Market Value">
+    <input type="text" name="images" placeholder="Image URL">
+    <input type="checkbox" name="favorite" value="true"> Favorite<br>
+    <button type="submit">Add Inventory</button>
+</form>
+</section>
+</body>
+</html>
