@@ -54,9 +54,7 @@ def login():
 
             #userExists = db.session.query(createAccount.id).filter_by(username=user).first() is not None
             combo = db.session.query(createAccount).filter_by(email=logemail, password=logpassw)
-            #query = db.session.query(createAccount).filter(createAccount.email==logemail, createAccount.password==logpassw) is not None
 
-            #password = db.session.query(createAccount.id).filter_by().first() is not None
 
             if combo:
                 return 'You are logged in!'
