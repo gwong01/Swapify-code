@@ -13,12 +13,12 @@
         <main>
             <header>SonnySwap</header>
             <h1 id="login"><em>Welcome back!</em></h1>
-            <form id="login-form">
+            <form id="login-form" action="{{ url_for('login') }}" method='POST'>
                 <section class="login-page">
                     <p id="email">Email Address</p>
-                    <input type="text" id="email-text" name="" placeholder="Enter email address...">
+                    <input type="text" id="email-text" name="email-text" placeholder="Enter email address...">
                     <p id="pass">Password</p>
-                    <input type="password" name="" id="pass-text" placeholder="Enter password...">
+                    <input type="password" name="pass-text" id="pass-text" placeholder="Enter password...">
                     <section class="button-container">
                         <button type="submit">Log in</button>
                     </section>
@@ -26,5 +26,10 @@
                 </section>
             </form>
         </main>
+        {% if current_user.is_authenticated %}
+        <h1>You are logged in</h1>
+        {% else %}
+        <h1>You are not logged in</h1>
+        {% endif %}
     </body>
 </html>

@@ -1,13 +1,22 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-import sys
+from flask_login import LoginManager, UserMixin
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+app.config["SECRET_KEY"] = "abc"
 
 db = SQLAlchemy(app)
 
-class createAccount(db.Model):
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def loader_user(user_id):
+    return createAccount.query.get(user_id)
+
+class createAccount(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     firstName = db.Column(db.String(200), nullable=False)
     lastName = db.Column(db.String(200), nullable=False)
@@ -52,18 +61,17 @@ def login():
             logemail = request.form['email-text']
             logpassw = request.form['pass-text']
 
-            #userExists = db.session.query(createAccount.id).filter_by(username=user).first() is not None
-            combo = db.session.query(createAccount).filter_by(email=logemail, password=logpassw)
-
+            combo = db.session.query(createAccount).filter_by(email=logemail, password=logpassw).first()
 
             if combo:
                 return 'You are logged in!'
             else:
-                return 'Wrong username password combo'
+                return 'Wrong username and password combination. Please try again'
         except:
-            return 'something went wrong on the server. please try again'
+            return 'Something went wrong on the server. Please try again'
 
     else:
         return render_template('login.html')
+
 if __name__ == "__main__":
     app.run(debug=True)
