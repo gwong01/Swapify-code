@@ -16,17 +16,17 @@
 {% endwith %}
 <nav class="navbar">
     <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="profile.html">Profile</a></li>
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('profile') }}">Profile</a></li>
     </ul>
 </nav>
 
 <ul>
-<li><a href="profile.html">Profile</a></li>
-        <li><a href="discontinued.html">Discontinued</a></li>
-        <li><a href="common.html">Common</a></li>
-        <li><a href="secrets.html">Secrets</a></li>
-        <li><a href="robbie.html">Robbie</a></li>
+    <li><a href="{{ url_for('common') }}">Common</a></li>
+    <li><a href="{{ url_for('limited') }}">limited</a></li>
+    <li><a href="{{ url_for('discontinued') }}">Discontinued</a></li>li>
+    <li><a href="{{ url_for('secrets') }}">Secrets</a></li>
+    <li><a href="{{ url_for('robbie') }}">Robbie</a></li>
 </ul>
 {% endblock %}
 </body>

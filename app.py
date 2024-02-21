@@ -27,9 +27,46 @@ class createAccount(UserMixin, db.Model):
     def __repr__(self):
         return'<Task %r>' % self.id
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/profile')
+def profile():
+    return render_template('profile.html')
+
+
+@app.route('/common')
+def common():
+    return render_template('common.html')
+
+
+@app.route('/limited')
+def limited():
+    return render_template('limited.html')
+
+
+@app.route('/discontinued')
+def discontinued():
+    return render_template('discontinued.html')
+
+
+@app.route('/secrets')
+def secrets():
+    return render_template('secrets.html')
+
+
+@app.route('/robbie')
+def robbie():
+    return render_template('robbie.html')
+
+
+@app.route('/favorites')
+def favorites():
+    return render_template('favorites.html')
+
 
 @app.route('/create', methods=['POST', 'GET'])
 def create():
