@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test_nancy.db'
 app.config["SECRET_KEY"] = "abc"
 
 db = SQLAlchemy(app)
@@ -22,9 +22,12 @@ class createAccount(UserMixin, db.Model):
     username = db.Column(db.String(200), nullable=False)
     email = db.Column(db.String(200), nullable=False)
     password = db.Column(db.String(200), nullable=False)
+    # sonny_items = db.relationship('SonnyItems', backref='owner', lazy=True)
 
+    # def __repr__(self):
+    #     return'<Task %r>' % self.id
     def __repr__(self):
-        return'<Task %r>' % self.id
+        return f'<createAccount {self.username}>'
 
 class SonnyItems(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -32,11 +35,14 @@ class SonnyItems(UserMixin, db.Model):
     series = db.Column(db.String(200), nullable=False)
     category = db.Column(db.String(200), nullable=False)
     mrk_value = db.Column(db.Float, nullable=False)
-    images = db.Column(db.String(200, nullable=False))
+    images = db.Column(db.String(200), nullable=False)
     favorite = db.Column(db.Boolean, default=0)
+    # owner_id = db.Column(db.Integer, db.ForeignKey('createAccount.id'), nullable=False)
 
+    # def __repr__(self):
+    #     return'<Task %r>' % self.id
     def __repr__(self):
-        return'<Task %r>' % self.id
+        return f'<SonnyItems {self.name}>'
 
 
 @app.route('/')
@@ -46,7 +52,8 @@ def index():
 
 @app.route('/profile')
 def profile():
-    return render_template('profile.html')
+    sonny_items = SonnyItems.query.all()
+    return render_template('profile.html', items=sonny_items)
 
 
 @app.route('/common')
@@ -77,6 +84,28 @@ def robbie():
 @app.route('/favorites')
 def favorites():
     return render_template('favorites.html')
+
+
+@app.route('/add_inventory', methods=['POST'])
+def add_inventory():
+    if request.method == 'POST':
+        id = 14 # placeholder for now
+        name = request.form['name']
+        series = request.form['series']
+        category = request.form['category']
+        mrk_value = request.form['mrk_value']
+        images = request.form['images']
+        favorite = True if request.form.get('favorite') == 'true' else False
+
+        try:
+            db.session.add(SonnyItems(id = id, name=name, series=series, category=category, mrk_value=mrk_value, images=images, favorite=favorite))
+            db.session.commit()
+            flash('Inventory item added successfully!', 'success')
+            return redirect(url_for('profile'))
+        except Exception as e:
+            print("Exception:", e) # for debugging
+            flash('There was an issue adding one of your inputs.', 'error')
+            return redirect(url_for('profile'))
 
 
 @app.route('/create', methods=['POST', 'GET'])
@@ -133,4 +162,6 @@ def login():
         return render_template('login.html')
 
 if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)

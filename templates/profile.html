@@ -13,7 +13,7 @@
     </ul>
 </nav>
 <section>
-    <h1> In Search O </h1>
+    <h1> In Search Of </h1>
 </section>
 
 <section>
@@ -29,6 +29,20 @@
         {% endfor %}
 
     <h1> Inventory </h1>
+    <div class="inventory-items">
+        {% for item in sonny_items %}
+            <div class="sonny_items">
+                <img src="{{ item.images }}" alt="{{ item.name }}">
+                <h2>{{ item.name }}</h2>
+                <p>Series: {{ item.series }}</p>
+                <p>Category: {{ item.category }}</p>
+                <p>Market Value: {{ item.mrk_value }}</p>
+                <!-- add more details here later -->
+            </div>
+        {% else %}
+            <p>No items found in inventory.</p>
+        {% endfor %}
+    </div>
  <form action="/add_inventory" method="post">
     <input type="text" name="name" placeholder="Name" required>
     <input type="text" name="series" placeholder="Series">
