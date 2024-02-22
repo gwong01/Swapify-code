@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin
 
-
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 app.config["SECRET_KEY"] = "abc"
@@ -23,6 +22,18 @@ class createAccount(UserMixin, db.Model):
     username = db.Column(db.String(200), nullable=False)
     email = db.Column(db.String(200), nullable=False)
     password = db.Column(db.String(200), nullable=False)
+
+    def __repr__(self):
+        return'<Task %r>' % self.id
+
+class SonnyItems(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(200), nullable=False)
+    series = db.Column(db.String(200), nullable=False)
+    category = db.Column(db.String(200), nullable=False)
+    mrk_value = db.Column(db.Float, nullable=False)
+    images = db.Column(db.String(200, nullable=False))
+    favorite = db.Column(db.Boolean, default=0)
 
     def __repr__(self):
         return'<Task %r>' % self.id
