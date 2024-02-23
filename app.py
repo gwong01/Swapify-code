@@ -58,27 +58,42 @@ def profile():
 
 @app.route('/common')
 def common():
-    return render_template('common.html')
+    # query through all sonny items
+    # only grab the items with common category
+    sonny_items = SonnyItems.query.filter(SonnyItems.category.ilike('Common')).all()
+    return render_template('common.html', items=sonny_items)
 
 
 @app.route('/limited')
 def limited():
-    return render_template('limited.html')
+    # query through all sonny items
+    # only grab the items with common category
+    sonny_items = SonnyItems.query.filter(SonnyItems.category.ilike('Limited')).all()
+    return render_template('limited.html', items=sonny_items)
 
 
 @app.route('/discontinued')
 def discontinued():
-    return render_template('discontinued.html')
+    # query through all sonny items
+    # only grab the items with common category
+    sonny_items = SonnyItems.query.filter(SonnyItems.category.ilike('Discontinued')).all()
+    return render_template('discontinued.html', items=sonny_items)
 
 
 @app.route('/secrets')
 def secrets():
-    return render_template('secrets.html')
+    # query through all sonny items
+    # only grab the items with common category
+    sonny_items = SonnyItems.query.filter(SonnyItems.category.ilike('Secret')).all()
+    return render_template('secrets.html', items=sonny_items)
 
 
 @app.route('/robbie')
 def robbie():
-    return render_template('robbie.html')
+    # query through all sonny items
+    # only grab the items with common category
+    sonny_items = SonnyItems.query.filter(SonnyItems.category.ilike('Robbie')).all()
+    return render_template('robbie.html', item=sonny_items)
 
 
 @app.route('/favorites')
@@ -89,7 +104,7 @@ def favorites():
 @app.route('/add_inventory', methods=['POST'])
 def add_inventory():
     if request.method == 'POST':
-        id = 14 # placeholder for now
+        id = 12 # placeholder for now
         name = request.form['name']
         series = request.form['series']
         category = request.form['category']
