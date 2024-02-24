@@ -1,6 +1,6 @@
-from flask import Flask, render_template, request, flash, redirect, url_for
+from flask import Flask, session, render_template, request, flash, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager, UserMixin
+from flask_login import LoginManager, UserMixin, logout_user
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test_nancy.db'
@@ -22,10 +22,6 @@ class createAccount(UserMixin, db.Model):
     username = db.Column(db.String(200), nullable=False)
     email = db.Column(db.String(200), nullable=False)
     password = db.Column(db.String(200), nullable=False)
-    # sonny_items = db.relationship('SonnyItems', backref='owner', lazy=True)
-
-    # def __repr__(self):
-    #     return'<Task %r>' % self.id
     def __repr__(self):
         return f'<createAccount {self.username}>'
 
@@ -37,10 +33,6 @@ class SonnyItems(UserMixin, db.Model):
     mrk_value = db.Column(db.Float, nullable=False)
     images = db.Column(db.String(200), nullable=False)
     favorite = db.Column(db.Boolean, default=0)
-    # owner_id = db.Column(db.Integer, db.ForeignKey('createAccount.id'), nullable=False)
-
-    # def __repr__(self):
-    #     return'<Task %r>' % self.id
     def __repr__(self):
         return f'<SonnyItems {self.name}>'
 
@@ -172,9 +164,16 @@ def login():
         except:
             flash('Something went wrong on the server. Please try again', 'error')
             return redirect(url_for('login'))
-
     else:
         return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    logout_user()
+    flash('You have successfully logged yourself out.')
+    return render_template('login.html')
+
 
 if __name__ == "__main__":
     with app.app_context():
