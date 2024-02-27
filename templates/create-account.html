@@ -1,0 +1,46 @@
+
+<html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <!--<meta name="viewport" content="width=device-width, initial-scale=1,0">-->
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <link rel="stylesheet" href="{{url_for('static', filename='css/account.css')}}">
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap">
+      <title>Register now!</title>
+  </head>
+  <body>
+      <main>
+          <header>SonnySwap</header>
+          <h1 id="create"><em>Create your SonnySwap account</em></h1>
+          <form action="{{ url_for('create') }}" method='POST' id="create-form">
+            <section class="create-page">
+                  <p id="first">First Name</p>
+                  <input type="text" id="first-text" name="first-text" placeholder="Enter first name...">
+                  <p id="last">Last Name</p>
+                  <input type="text" id="last-text" name="last" placeholder="Enter last name...">
+                  <p id="username">Username</p>
+                  <input type="text" id="user-text" name="user-text" placeholder="Please choose a username...">
+                  <p id="email">Email Address</p>
+                  <input type="text" id="email-text" name="email-text" placeholder="Enter your email address...">
+                  <p id="pass">Password</p>
+                  <input type="password" name="pass-text" id="pass-text" placeholder="Enter password...">
+                  <section class="button-container">
+                      <button type="submit">Create account!</button>
+                    </section>
+            </section>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for msg in messages %}
+                        <h4>{{msg}}</h4>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <section>
+                  <p><em>Already have an account?</em><em> <a href="{{url_for('login')}}">Log in!</em></a></p>
+            </section>
+          </form>
+      </main>
+  </body>
+</html>
