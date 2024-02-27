@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="styles.css">
+     <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
 </head>
 <body>
 {% block content %}
@@ -14,21 +15,29 @@
     {% endfor %}
 {% endif %}
 {% endwith %}
-<a href="{{ url_for('logout') }}">Logout</a>
 <nav class="navbar">
-    <ul>
-        <li><a href="{{ url_for('index') }}">Home</a></li>
-        <li><a href="{{ url_for('profile') }}">Profile</a></li>
-    </ul>
+    <a href="{{ url_for('index') }}">Home</a>
+    <a href="{{ url_for('profile') }}">Profile</a>
 </nav>
 
-<ul>
-    <li><a href="{{ url_for('common') }}">Common</a></li>
-    <li><a href="{{ url_for('limited') }}">limited</a></li>
-    <li><a href="{{ url_for('discontinued') }}">Discontinued</a></li>li>
-    <li><a href="{{ url_for('secrets') }}">Secrets</a></li>
-    <li><a href="{{ url_for('robbie') }}">Robbie</a></li>
-</ul>
 {% endblock %}
+
+<div class="grid-container">
+  <div class="grid-item">
+    <a href="{{ url_for('common') }}">Common</a>
+  </div>
+  <div class="grid-item">
+    <a href="{{ url_for('limited') }}">Limited</a>
+  </div>
+  <div class="grid-item">
+    <a href="{{ url_for('discontinued') }}">Discontinued</a>
+  </div>
+    <div class="grid-item">
+        <a href="{{ url_for('secrets') }}">Secrets</a>
+    </div>
+    <div class="grid-item">
+        <a href="{{ url_for('robbie') }}">Robbie</a>
+    </div>
+</div>
 </body>
 </html>
