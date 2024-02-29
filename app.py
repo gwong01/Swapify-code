@@ -96,7 +96,7 @@ def favorites():
 @app.route('/add_inventory', methods=['POST'])
 def add_inventory():
     if request.method == 'POST':
-        id = 12 # placeholder for now
+        id = 29 # placeholder for now
         name = request.form['name']
         series = request.form['series']
         category = request.form['category']
