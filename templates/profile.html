@@ -4,12 +4,22 @@
     <meta charset="UTF-8">
     <title>Profile</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+    <header>SonnySwap</header>
 </head>
 <body>
+<div class = "profile-container">
+<div class = "profile-description">
+
+</div>
+
+</div>
 <nav class="navbar">
+
     <a href="{{ url_for('index') }}">Home</a>
     <a href="{{ url_for('profile') }}">Profile</a>
     <a id="logout" href="{{ url_for('logout') }}">Logout</a>
+    <a href="{{ url_for('favorites') }}">Favorites</a>
+
 </nav>
 
 <section>
