@@ -2,18 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Robbie</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Robby</title>
+     <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
 </head>
 <body>
 <nav class="navbar">
-    <ul>
-        <li><a href="{{ url_for('index') }}">Home</a></li>
-        <li><a href="{{ url_for('profile') }}">Profile</a></li>
-    </ul>
+    <a href="{{ url_for('index') }}">Home</a>
+    <a href="{{ url_for('profile') }}">Profile</a>
 </nav>
 
-<h1>Robbie</h1>
+
+<h1>Robby</h1>
 <ul>
     {% if items %}
         {% for item in items %}
@@ -27,7 +26,7 @@
         </li>
         {% endfor %}
     {% else %}
-        <p>No Robbies found.</p>
+        <p>No Robby found.</p>
     {% endif %}
 </ul>
 

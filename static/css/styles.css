@@ -1,0 +1,209 @@
+body {
+  background-color: #FFFFFF;
+  font-family: "Roboto", sans-serif;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+
+header {
+  font-size: 40px;
+  text-align: center;
+}
+
+img {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+}
+
+form {
+  width: 80%;
+  box-sizing: border-box;
+  border: gray;
+  border-radius: 4px;
+}
+
+#login{
+  text-align: center;
+}
+
+.login-page {
+  background: linear-gradient(123.5deg, rgb(244, 219, 251) 29.3%, rgb(255, 214, 214) 67.1%);
+  border-radius: 20px;
+  height: 50vh;
+}
+
+#login {
+  color: #c4bbf0;
+}
+
+#email,
+#pass,
+.login-page{
+  font-size: 24px;
+  text-align: center;
+}
+
+#email,
+#pass {
+  color: black;
+}
+
+#email-text,
+#pass-text {
+  width: 60vh;
+  height: 7%;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.button-container button {
+  background-color: lightgray;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button-container button:hover {
+  background-color: #FEC5E5;
+}
+
+.login-page input {
+  width: 80%;
+  height: 40px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: gray;
+  border-radius: 4px;
+}
+
+#create, #create-form {
+  text-align: center;
+}
+
+#create-form {
+  flex-wrap: wrap;
+  background: linear-gradient(123.5deg, rgb(244, 219, 251) 29.3%, rgb(255, 214, 214) 67.1%);
+  border-radius: 20px;
+  height: 80vh;
+}
+
+.button-container button {
+  background-color: lightgray;
+  color: #fff;
+  font-size: 20px;
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.button-container button:hover {
+  background-color: #FEC5E5;
+}
+
+
+.create-page input {
+  width: 50%;
+  height: 40px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: gray;
+  border-radius: 4px;
+}
+
+.create-page p {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+a {
+  text-decoration: none;
+}
+.navbar {
+    overflow: hidden;
+    background: linear-gradient(123.5deg, rgb(244, 219, 251) 29.3%, rgb(255, 214, 214) 67.1%);
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: #000000;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+#logout {
+  margin-left: 750px;
+}
+
+.grid-container {
+  display: grid;
+  padding: 35px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-gap: 30px;
+}
+
+.grid-item {
+  display: inline-block;
+  padding: 10px;
+  margin: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  border: 2px solid black;
+  border-radius: 15px;
+}
+
+.grid-item h2 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 2px solid #ffcee4;
+  border-radius: 5px;
+  font-size: 0.9em;
+  color: #444444;
+  background: linear-gradient(123.5deg, rgba(244, 219, 251, .5) 29.3%, rgba(255, 214, 214, 0.5) 67.1%);
+}
+
+#submit{
+  background: linear-gradient(123.5deg, rgba(244, 219, 251, .5) 29.3%, rgba(255, 214, 214, 0.5) 67.1%);
+  color: #000000;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
