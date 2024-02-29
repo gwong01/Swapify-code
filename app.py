@@ -16,7 +16,8 @@ def loader_user(user_id):
     return createAccount.query.get(user_id)
 
 class createAccount(UserMixin, db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    # id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     firstName = db.Column(db.String(200), nullable=False)
     lastName = db.Column(db.String(200), nullable=False)
     username = db.Column(db.String(200), nullable=False)
@@ -96,7 +97,6 @@ def favorites():
 @app.route('/add_inventory', methods=['POST'])
 def add_inventory():
     if request.method == 'POST':
-        id = 29 # placeholder for now
         name = request.form['name']
         series = request.form['series']
         category = request.form['category']
@@ -105,7 +105,7 @@ def add_inventory():
         favorite = True if request.form.get('favorite') == 'true' else False
 
         try:
-            db.session.add(SonnyItems(id = id, name=name, series=series, category=category, mrk_value=mrk_value, images=images, favorite=favorite))
+            db.session.add(SonnyItems(name=name, series=series, category=category, mrk_value=mrk_value, images=images, favorite=favorite))
             db.session.commit()
             flash('Inventory item added successfully!', 'success')
             return redirect(url_for('profile'))
