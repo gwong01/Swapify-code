@@ -26,17 +26,26 @@
 </section>
 <section>
     <h1> Inventory </h1>
-    <div class="inventory-items">
-        {% for item in items %}
-            <div class="sonny-item">
-                <img src="{{ item.images }}" alt="{{ item.name }}">
-                <h4>{{ item.name }}</h4>
-            </div>
+    <ul class="item-list">
+        {% if items %}
+            {% for item in items %}
+                <li>
+                    <h3>{{ item.name }}</h3>
+                    <div class="grid-container">
+                        <div class="image-container">
+                            <img src="{{ item.images }}" alt="{{ item.name }}">
+                        </div>
+                    </div>
+                    <p>Series: {{ item.series }}</p>
+                    <p>Category: {{ item.category }}</p>
+                    <p>Market Value: {{ item.mrk_value }}</p>
+                    <!-- add more details later -->
+                </li>
+            {% endfor %}
         {% else %}
-            <p>No items found.</p>
-        {% endfor %}
-    </div>
-
+            <p>No Limited Sonny items found.</p>
+        {% endif %}
+    </ul>
 <h2> Create new listing </h2>
 <div class="create-form">
     <form action="/add_inventory" method="post">
